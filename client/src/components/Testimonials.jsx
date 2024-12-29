@@ -19,7 +19,7 @@ function Testimonials() {
                             <img src={assets.rating_star} alt='' key={index}/>
                         ))}
                     </div>
-                    <p className='text-center text-sm text-gray-600'>{testimonial.text}</p>
+                    <p className='text-center text-sm text-gray-600'>{testimonial.text}</p> 
                 </div>
             </div>
         ))}
