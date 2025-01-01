@@ -61,9 +61,13 @@ const loginUser = asyncHandler( async(req, res) => {
 
 const userCredits = asyncHandler( async(req, res) => {
     try {
-        // const
+        const {userId} = req.body;
+        const user = await User.findById(userId)
+
+        res.json({success: true, credits: user.creditBalance, user: {name: user.name}})
     } catch (error) {
-        
+        console.log("Error in usercredits :: ", error)
+        res.json({success: false, message: error.message})
     }
 })
 
