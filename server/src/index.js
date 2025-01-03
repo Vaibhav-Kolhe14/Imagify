@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import { connectDB } from './db/connectDB.js'
 import userRouter from './routes/userRoutes.js'
+import imageRouter from './routes/imageRoutes.js'
 
 const PORT = process.env.PORT || 4000;
 
@@ -16,6 +17,7 @@ app.use(cors({
 app.use(express.json())
 
 app.use('/api/user', userRouter)
+app.use('/api/image', imageRouter)
 
 app.get('/', (req, res) => {
     res.send("API WORKing")
