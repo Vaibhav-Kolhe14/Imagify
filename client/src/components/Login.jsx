@@ -2,10 +2,50 @@ import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import { delay, motion } from "motion/react";
+import axios from 'axios'
+import { toast } from "react-toastify";
+import { data } from "react-router-dom";
 
 function Login() {
-  const { setShowLogin } = useContext(AppContext);
+  const { setShowLogin, setToken, setUser } = useContext(AppContext);
   const [state, setState] = useState("Login");
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if(state === 'Login') {
+       const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/login`, {
+          email, password
+        })
+        if(response.data.success) {
+          setToken(response.data.token)
+          setUser(response.data.user)
+          localStorage.setItem('token', response.data.token)
+          setShowLogin(false)
+        } else {
+          toast.error(response.data.message)
+        }
+      } else{
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/register`, {
+          name, email, password
+        })
+        if(response.data.success) {
+          setToken(response.data.token)
+          setUser(response.data.user)
+          localStorage.setItem('token', response.data.token)
+          setShowLogin(false)
+        } else {
+          toast.error(response.data.message)
+        }
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -17,7 +57,7 @@ function Login() {
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center">
-      <motion.form
+      <motion.form onSubmit={onSubmitHandler}
         initial={{ opacity: 0.2, y: 50 }}
         transition={{ duration: 0.3 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +72,7 @@ function Login() {
         {state !== "Login" && (
           <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4">
             <img className="w-6 h-6" src={assets.profile_icon} alt="" />
-            <input
+            <input onChange={e => setName(e.target.value)} value={name}
               className="outline-none text-sm"
               type="text"
               placeholder="Full Name"
@@ -43,7 +83,7 @@ function Login() {
 
         <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4">
           <img src={assets.email_icon} alt="" />
-          <input
+          <input onChange={e => setEmail(e.target.value)} value={email}
             className="outline-none text-sm"
             type="email"
             placeholder="Email id"
@@ -53,7 +93,7 @@ function Login() {
 
         <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4">
           <img src={assets.lock_icon} alt="" />
-          <input
+          <input onChange={e => setPassword(e.target.value)} value={password}
             className="outline-none text-sm"
             type="password"
             placeholder="Password"
