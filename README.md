@@ -4,12 +4,12 @@
 
 1. **Clone the Repository**:  
    ```bash  
-   https://github.com/Vaibhav-Kolhe14/ChatApp.git  
+   https://github.com/Vaibhav-Kolhe14/Imagify.git  
    ```  
 
 2. **Navigate to the Project Directory**:  
    ```bash  
-   cd ChatApp  
+   cd Imagify  
    ```  
 
 3. **Install Dependencies for Backend and Frontend**:  
