@@ -1,8 +1,40 @@
-# React + Vite
+## Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Setup Instructions  
 
-Currently, two official plugins are available:
+1. **Clone the Repository**:  
+   ```bash  
+   https://github.com/Vaibhav-Kolhe14/ChatApp.git  
+   ```  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. **Navigate to the Project Directory**:  
+   ```bash  
+   cd ChatApp  
+   ```  
+
+3. **Install Dependencies for Backend and Frontend**:  
+   - Navigate to the `server` directory and install dependencies:  
+     ```bash  
+     cd server  
+     npm install  
+     ```  
+   - Navigate to the `client` directory and install dependencies:  
+     ```bash  
+     cd ../client 
+     npm install  
+     ```  
+
+5. **Run the Application**:  
+   - Start the server:  
+     ```bash  
+     cd ../server  
+     npm start  
+     ```  
+   - Start the frontend development server:  
+     ```bash  
+     cd ../client 
+     npm run dev  
+     ```
+
+
+> Thank you for checking out my project! 
